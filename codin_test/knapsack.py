@@ -1,4 +1,3 @@
-import numpy as np
 #https://www.acmicpc.net/problem/12865
 def solve12865():
     N, K = map(int, input().split())
@@ -43,6 +42,25 @@ def solve1535():
 
     print(dp[N][K])
 
+#https://www.acmicpc.net/problem/9084
+def solve9084():
+    N = int(input())
+    coins = list(map(int, input().split()))
+    K = int(input())
 
+    dp = [[0 for _ in range(K + 1)] for _ in range(N + 1)]
 
-solve1535()
+    for i in range(len(dp)):
+        dp[i][0] = 1
+
+    for i in range(1, N+1):
+        for j in range(1, K + 1):
+            if coins[i-1] <= j:
+                dp[i][j] = max(dp[i-1][j] + dp[i][j - coins[i-1]], dp[i-1][j])
+            else:
+                dp[i][j] = dp[i-1][j]
+
+    print(dp[N][K])
+
+for i in range(int(input())):
+    solve9084()
