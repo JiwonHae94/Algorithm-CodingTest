@@ -163,12 +163,17 @@ def solve1316():
 
 #https://www.acmicpc.net/problem/2751
 import heapq
+import sys
+
 def solve2751():
     n = int(input())
     nums = []
 
     for i in range(n):
-        heapq.heappush(nums, int(input()))
+        num = sys.stdin.readline()
+        nums.append(int(num))
+
+    heapq.heapify(nums)
 
     for i in range(n):
         print(heapq.heappop(nums))

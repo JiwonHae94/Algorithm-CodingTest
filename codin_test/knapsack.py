@@ -61,6 +61,3 @@ def solve9084():
                 dp[i][j] = dp[i-1][j]
 
     print(dp[N][K])
-
-for i in range(int(input())):
-    solve9084()
