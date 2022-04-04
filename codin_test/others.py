@@ -178,4 +178,25 @@ def solve2751():
     for i in range(n):
         print(heapq.heappop(nums))
 
-solve2751()
+
+#https://www.acmicpc.net/problem/11399
+def solve11399():
+    n = int(input())
+    wait = list(map(int, input().split()))
+    wait.sort()
+
+    total_time = wait
+
+    for i in range(1, n):
+        total_time[i] += total_time[i-1]
+
+    print(sum(total_time))
+
+#https://www.acmicpc.net/problem/2869
+import math
+def solve2869():
+    A, B, V = map(int, input().split())
+    N = (V - A) / (A - B) + 1
+    print(int(math.ceil(N)))
+
+solve2869()
