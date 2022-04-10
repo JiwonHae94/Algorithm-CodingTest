@@ -85,3 +85,4 @@ def solve2798():
 
     print(get_max(cards, []))
 
+

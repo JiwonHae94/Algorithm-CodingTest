@@ -163,4 +163,100 @@ def solve1002():
             else:
                 print(2)
 
-solve1002()
+# https://www.acmicpc.net/problem/1085
+def solve1085():
+    x, y, w, h = map(int, input().split())
+
+    sX, sY = 0, 0
+    dist = min(abs(x - sX), abs(x- w), abs(y - sY), abs(y - h))
+    print(dist)
+
+# https://www.acmicpc.net/problem/3009
+def solve3009():
+    xs = []
+    ys = []
+
+    for i in range(3):
+        x, y = map(int, input().split())
+        if x in xs:
+            xs.remove(x)
+        else:
+            xs.append(x)
+
+        if y in ys:
+            ys.remove(y)
+        else:
+            ys.append(y)
+
+    print(xs[0], ys[0])
+
+# https://www.acmicpc.net/problem/4153
+def solve4153():
+    while True:
+        edges = sorted(list(map(int, input().split())))
+
+        if edges[0] == edges[1] == edges[2] == 0:
+            break
+
+        edges = [i*i for i in edges]
+        ans = "right" if edges[0] + edges[1] == edges[2] else "wrong"
+        print(ans)
+# https://www.acmicpc.net/problem/4948
+def solve4948():
+    N = 123456 * 2
+    m = int(N)
+    s = [True] * (N + 1)
+    s[1] = False
+
+    for i in range(2, m + 1):
+        if s[i]:
+            for j in range(i + i, N + 1, i):
+                s[j] = False
+
+    while True:
+        I = int(input())
+        if I == 0:
+            break
+
+        temp = s[I+1: I * 2+1]
+        print(temp.count(True))
+
+# https://www.acmicpc.net/problem/9020
+def solve9020():
+    N = 10000
+    s = [True] * (N + 1)
+    s[1] = False
+    primes = []
+
+    for i in range(2, N + 1):
+        if s[i]:
+            primes.append(i)
+            for j in range(i + i, N + 1, i):
+                s[j] = False
+
+    sums = {}
+
+    for i in primes:
+        for j in primes:
+            num = i+j
+
+            if num not in sums:
+                sums[num] = (i, j)
+            else:
+                if abs(sums[num][1] - sums[num][0]) > abs(j - i):
+                    sums[num] = (i, j)
+
+    T = int(input())
+    for _ in range(T):
+        number = int(input())
+        print(sums[number][0], sums[number][1])
+
+# https://www.acmicpc.net/problem/3053
+import math
+
+def solve3053():
+    R = int(input())
+    print("{0:.6f}".format(math.pi * R ** 2))
+    print("{0:.6f}".format(2 * R ** 2))
+
+solve3053()
