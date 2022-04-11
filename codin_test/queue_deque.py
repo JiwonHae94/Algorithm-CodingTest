@@ -47,3 +47,91 @@ def solve18258():
                 print(d[-1])
             else :
                 print(-1)
+
+# https://www.acmicpc.net/problem/11650
+from collections import deque
+import sys
+def solve11650():
+    T = int(input())
+    Q = deque()
+
+    for _ in range(T):
+        x, y = map(int, sys.stdin.readline().split())
+        Q.append((x, y))
+
+    for x,y in sorted(Q, key = lambda x : (x[0], x[1])):
+        print(x, y)
+
+# https://www.acmicpc.net/problem/11651
+from collections import deque
+import sys
+def solve11651():
+    T = int(input())
+    Q = deque()
+
+    for _ in range(T):
+        x, y = map(int, sys.stdin.readline().split())
+        Q.append((x, y))
+
+    for x,y in sorted(Q, key = lambda x : (x[1], x[0])):
+        print(x, y)
+
+# https://www.acmicpc.net/problem/1181
+from collections import deque
+import sys
+def solve11651():
+    T = int(input())
+    Q = deque()
+
+    for _ in range(T):
+        x = sys.stdin.readline().strip()
+
+        if x not in Q:
+            Q.append(x)
+
+    for x in sorted(Q, key = lambda x : (len(x), x)):
+        print(x)
+
+# https://www.acmicpc.net/problem/10814
+from collections import deque
+import sys
+def solve10814():
+    T = int(input())
+    Q = deque()
+
+    for _ in range(T):
+        age, name = sys.stdin.readline().strip().split()
+        Q.append((int(age), name))
+
+    for x, y in sorted(Q, key = lambda x : x[0]):
+        print(x, y)
+
+# https://www.acmicpc.net/problem/18870
+from collections import deque
+import sys
+def solve18870():
+    _ = input()
+    Q = list(map(int, sys.stdin.readline().strip().split()))
+    ans = Q.copy()
+    keyMap = {val:idx for idx, val in enumerate(sorted(set(Q)))}
+    ans = [str(keyMap[val]) for val in ans]
+    print(" ".join(ans))
+
+# https://www.acmicpc.net/problem/10989
+from collections import deque
+import sys
+def solve10989():
+    T = int(input())
+    Q = [0 for _ in range(10001)]
+
+    for _ in range(T):
+        num = int(sys.stdin.readline().strip())
+        Q[num] += 1
+
+    for i in range(1, len(Q)):
+        if Q[i] != 0:
+            for j in range(Q[i]):
+                print(i)
+
+
+solve10989()
