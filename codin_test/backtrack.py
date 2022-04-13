@@ -78,4 +78,37 @@ def solve15652():
     for i in ans:
         print(*i)
 
-solve15652()
+# https://www.acmicpc.net/problem/9663
+def solve9663():
+    N = int(input())
+    answer = 0
+    visited = [False] * N
+    row = [0] * N
+
+    def is_promising(x):
+        for i in range(x):
+            # row[x] == row[i] : column이 같은 경우 확인
+            # abs(row[x] - row[i]) == abs(x - i) -> check diagonal
+            if row[x] == row[i] or abs(row[x] - row[i]) == abs(x- i):
+                return False
+        return True
+
+    def n_queens(x):
+        if x == N:
+            nonlocal answer
+            answer += 1
+            return
+
+        for i in range(N):
+            if visited[i]:
+                continue
+            row[x] = i
+            if is_promising(x):
+                visited[i] = True
+                n_queens(x + 1)
+                visited[i] = False
+
+    n_queens(0)
+    print(answer)
+
+solve9663()
