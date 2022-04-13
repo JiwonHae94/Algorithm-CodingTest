@@ -111,4 +111,55 @@ def solve9663():
     n_queens(0)
     print(answer)
 
-solve9663()
+# https://www.acmicpc.net/problem/2580
+import sys
+def solve2580():
+    matrix = [list(map(int, sys.stdin.readline().rstrip().split())) for _ in range(9)]
+    blacks = []
+
+    for i in range(9):
+        for j in range(9):
+            if matrix[i][j] == 0:
+                blacks.append((i, j))
+
+    def check_row(x, a):
+        for i in range(9):
+            if a == matrix[x][i]:
+                return False
+        return True
+
+    def check_col(y, a):
+        for i in range(9):
+            if a == matrix[i][y]:
+                return False
+        return True
+
+    def check_rect(x, y, a):
+        nx = x // 3 * 3
+        ny = y // 3 * 3
+
+        for i in range(3):
+            for j in range(3):
+                if a == matrix[nx + i][ny + j]:
+                    return False
+        return True
+
+    def dfs(idx):
+        if idx == len(blacks):
+            # all blanks are filled
+            for i in range(9):
+                print(*matrix[i])
+            exit(0)
+
+        for i in range(1, 10):
+            x = blacks[idx][0]
+            y = blacks[idx][1]
+
+            if check_col(y, i) and check_row(x, i) and check_rect(x, y, i):
+                matrix[x][y] = i
+                dfs(idx + 1)
+                matrix[x][y] = 0
+    dfs(0)
+
+
+solve2580()
