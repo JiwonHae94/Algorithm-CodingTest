@@ -259,4 +259,144 @@ def solve3053():
     print("{0:.6f}".format(math.pi * R ** 2))
     print("{0:.6f}".format(2 * R ** 2))
 
-solve3053()
+# https://www.acmicpc.net/problem/5086
+def solve5086():
+
+    while True:
+        A, B = map(int, input().split())
+
+        if(A == B == 0):
+            break
+
+        if (A % B == 0):
+            print("multiple")
+        elif (B % A == 0):
+            print("factor")
+        else:
+            print("neither")
+
+# https://www.acmicpc.net/problem/1037
+def solve1037():
+    N = input()
+    factors = list(map(int, input().split()))
+    print(min(factors) * max(factors))
+
+# https://www.acmicpc.net/problem/1934
+def solve1934():
+    N = int(input())
+
+    def gcd(x, y):
+        if y == 0:
+            return x
+        else:
+            return gcd(y, x % y)
+
+    def lcm(x, y):
+        return (x * y) // gcd(x, y)
+
+    for _ in range(N):
+        A, B = map(int, input().split())
+        print(lcm(A, B))
+
+# https://www.acmicpc.net/problem/2609
+def solve2609():
+    def gcd(x, y):
+        if y == 0:
+            return x
+        else:
+            return gcd(y, x % y)
+
+    def lcm(x, y):
+        return (x * y) // gcd(x, y)
+
+    A, B = map(int, input().split())
+    print(gcd(A, B))
+    print(lcm(A, B))
+
+# https://www.acmicpc.net/problem/3036
+def solve3036():
+    N = int(input())
+    rings = list(map(int, input().split()))
+
+    def gcd(x, y):
+        if y == 0:
+            return x
+        else :
+            return gcd(y, x % y)
+
+    for i in range(1, N):
+        _gcd = gcd(rings[0], rings[i])
+        print(f"{rings[0] // _gcd}/{rings[i] // _gcd}")
+
+# https://www.acmicpc.net/problem/11050
+def solve11050():
+    def factorial(x):
+        rslt = 1
+        for i in range(2, x+1):
+            rslt *= i
+
+        return rslt
+
+    A, B = map(int, input().split())
+    print(factorial(A) // factorial(B) // factorial(A-B))
+
+
+# https://www.acmicpc.net/problem/11051
+def solve11051():
+    def factorial(x):
+        rslt = 1
+        for i in range(2, x+1):
+            rslt *= i
+        return rslt
+
+    A, B = map(int, input().split())
+    print((factorial(A) // factorial(B) // factorial(A-B)) % 10007)
+
+# https://www.acmicpc.net/problem/1010
+def solve1010():
+    N = int(input())
+
+    def factorial(x):
+        rslt = 1
+        for i in range(2, x+1):
+            rslt *= i
+        return rslt
+
+    def coefficient(A, B):
+        return factorial(A) // factorial(B) // factorial(A-B)
+
+    for _ in range(N):
+        A, B = map(int, input().split())
+        print(coefficient(max(A, B), min(A, B)))
+
+# https://www.acmicpc.net/problem/1676
+def solve1676():
+    N = int(input())
+    print(N // 5 + N // 25 + N // 125)
+
+# https://www.acmicpc.net/problem/2004
+def solve2004():
+    def get_five_power_n(n):
+        cnt = 0
+
+        while n >= 5:
+            cnt += n // 5
+            n //= 5
+
+        return cnt
+
+    def get_two_power_n(n):
+        cnt = 0
+        while n >= 2:
+            cnt += n // 2
+            n //= 2
+
+        return cnt
+
+    A, B = map(int, input().split())
+    cnt5 = get_five_power_n(A) - get_five_power_n(A- B) - get_five_power_n(B)
+    cnt2 = get_two_power_n(A) - get_two_power_n(A- B) - get_two_power_n(B)
+
+    print(min(cnt2, cnt5))
+
+solve2004()

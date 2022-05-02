@@ -41,4 +41,26 @@ def solve11729():
     print(2 ** n - 1)
     hanoi_tower(n, 1, 3)
 
-solve11729()
+
+##https://www.acmicpc.net/problem/10872
+def solve10872():
+    N = int(input())
+    fac = [1, 1]
+    cnt = 2
+    while cnt < N+1:
+        fac.append(fac[-1] * cnt)
+        cnt += 1
+
+    print(fac[N])
+
+# https://www.acmicpc.net/problem/10870
+def solve10870():
+    N = int(input())
+    fib = [0, 1]
+    cnt = 2
+
+    while cnt < N+ 1:
+        fib.append(fib[cnt-1] + fib[cnt-2])
+        cnt +=1
+    print(fib[N])
+

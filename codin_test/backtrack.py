@@ -61,22 +61,22 @@ def solve15651():
 
 # https://www.acmicpc.net/problem/15652
 import sys
+from collections import Counter
 def solve15652():
     N, M = map(int, sys.stdin.readline().strip().split())
-    ans = []
-    def backtrack(x, length):
-        if length == M:
-            ans.append(x.copy())
+    nums = []
+
+    def dfs(idx):
+        if len(nums) == M:
+            print(*nums)
             return
 
-        for i in range(1, N + 1):
-            x.append(i)
-            backtrack(x, length + 1)
-            x.pop()
+        for i in range(idx, N + 1):
+            nums.append(i)
+            dfs(i)
+            nums.pop()
 
-    backtrack([], 0)
-    for i in ans:
-        print(*i)
+    dfs(1)
 
 # https://www.acmicpc.net/problem/9663
 def solve9663():
@@ -161,5 +161,3 @@ def solve2580():
                 matrix[x][y] = 0
     dfs(0)
 
-
-solve2580()
